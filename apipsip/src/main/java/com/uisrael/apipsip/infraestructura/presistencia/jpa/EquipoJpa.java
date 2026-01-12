@@ -1,6 +1,10 @@
 package com.uisrael.apipsip.infraestructura.presistencia.jpa;
 
 import java.io.Serializable;
+
+
+
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,4 +26,6 @@ public class EquipoJpa implements Serializable {
 	private String numSerie;
 
 	private String descripcion;
+	
+	 
 }

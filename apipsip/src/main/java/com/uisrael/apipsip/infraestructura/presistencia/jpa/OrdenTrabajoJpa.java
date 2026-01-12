@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "orden_trabajo")
+@Table(name = "ordentrabajo")
 public class OrdenTrabajoJpa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -20,19 +20,19 @@ public class OrdenTrabajoJpa implements Serializable {
 	private String codigo;
 
 	@ManyToOne
-	@JoinColumn(name = "id_cliente")
+	@JoinColumn(name = "cliente")
 	private ClienteJpa cliente;
 
 	@ManyToOne
-	@JoinColumn(name = "id_tecnico")
+	@JoinColumn(name = "tecnico")
 	private TecnicoJpa tecnico;
 
 	@ManyToOne
-	@JoinColumn(name = "id_tipo_servicio")
+	@JoinColumn(name = "tiposervicio")
 	private TipoServicioJpa tipoServicio;
 
 	@ManyToOne
-	@JoinColumn(name = "id_equipo")
+	@JoinColumn(name = "equipo")
 	private EquipoJpa equipo;
 
 	private LocalDate fechaSolicitud;
@@ -40,8 +40,9 @@ public class OrdenTrabajoJpa implements Serializable {
 	private LocalTime horaAgendada;
 	private String estado;
 
-	@Column(name = "descripcion_trabajo")
+	@Column(name = "descripciontrabajo")
 	private String descripcionTrabajo;
 
 	private String observaciones;
+	
 }

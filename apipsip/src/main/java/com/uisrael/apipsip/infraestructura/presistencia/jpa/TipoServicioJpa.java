@@ -1,12 +1,16 @@
 package com.uisrael.apipsip.infraestructura.presistencia.jpa;
 
 import java.io.Serializable;
+
+
+
+
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tipo_servicio")
+@Table(name = "tiposervicio")
 public class TipoServicioJpa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,4 +21,6 @@ public class TipoServicioJpa implements Serializable {
 
 	private String nombre;
 	private String descripcion;
+	
+	
 }

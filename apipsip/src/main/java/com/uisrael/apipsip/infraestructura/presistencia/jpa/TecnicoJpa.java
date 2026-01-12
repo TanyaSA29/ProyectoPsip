@@ -2,6 +2,10 @@ package com.uisrael.apipsip.infraestructura.presistencia.jpa;
 
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.uisrael.apipsip.dominio.entidades.OrdenTrabajo;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,4 +23,6 @@ public class TecnicoJpa implements Serializable {
 	private String email;
 	private String telefono;
 	private boolean activo;
+	
+
 }
