@@ -1,0 +1,60 @@
+package com.uisrael.apipsip.dominio.entidades;
+
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
+
+
+	private static final long serialVersionUID = 1L;
+	private final int idCliente;
+	private final String nombre;
+	private final String email; 
+	private final String telefono;
+	private final String direccion;
+	private final boolean estado;
+	
+	private Cliente(int idCliente, String nombre, String email, String telefono, String direccion, boolean estado) {
+		super();
+		this.idCliente = idCliente;
+		this.nombre = nombre;
+		this.email = email;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.estado = estado;
+	}
+
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	@Override
+	public String toString() {
+		return "cliente [idCliente=" + idCliente + ", nombre=" + nombre + ", email=" + email + ", telefono=" + telefono
+				+ ", direccion=" + direccion + ", estado=" + estado + "]";
+	}
+		
+
+
+
+
+}
