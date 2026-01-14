@@ -33,7 +33,36 @@ import com.uisrael.apipsip.infraestructura.presistencia.mapeadores.IEquipoJpaMap
 import com.uisrael.apipsip.infraestructura.presistencia.mapeadores.IOrdenTrabajoJpaMapper;
 import com.uisrael.apipsip.infraestructura.presistencia.mapeadores.ITecnicoJpaMapper;
 import com.uisrael.apipsip.infraestructura.presistencia.mapeadores.ITipoServicioJpaMapper;
-
+//Interfaces de dominio
+import com.uisrael.apipsip.dominio.repositorios.IAnexoDocumentoRepositorio;
+import com.uisrael.apipsip.dominio.repositorios.IMensajeClienteRepositorio;
+import com.uisrael.apipsip.dominio.repositorios.IFotoVerificacionRepositorio;
+import com.uisrael.apipsip.dominio.repositorios.IHistorialEstadoRepositorio;
+import com.uisrael.apipsip.dominio.repositorios.IPaginaWebRepositorio;
+//Implementaciones de casos de uso
+import com.uisrael.apipsip.aplicacion.casosuso.impl.AnexoDocumentoUseCaseImpl;
+import com.uisrael.apipsip.aplicacion.casosuso.impl.MensajeClienteUseCaseImpl;
+import com.uisrael.apipsip.aplicacion.casosuso.impl.FotoVerificacionUseCaseImpl;
+import com.uisrael.apipsip.aplicacion.casosuso.impl.HistorialEstadoUseCaseImpl;
+import com.uisrael.apipsip.aplicacion.casosuso.impl.PaginaWebUseCaseImpl;
+//Adaptadores de repositorio (infraestructura)
+import com.uisrael.apipsip.infraestructura.presistencia.adaptadores.AnexoDocumentoRepositorioImpl;
+import com.uisrael.apipsip.infraestructura.presistencia.adaptadores.MensajeClienteRepositorioImpl;
+import com.uisrael.apipsip.infraestructura.presistencia.adaptadores.FotoVerificacionRepositorioImpl;
+import com.uisrael.apipsip.infraestructura.presistencia.adaptadores.HistorialEstadoRepositorioImpl;
+import com.uisrael.apipsip.infraestructura.presistencia.adaptadores.PaginaWebRepositorioImpl;
+//Repositorios JPA (Spring Data)
+import com.uisrael.apipsip.infraestructura.respositorios.IAnexoDocumentoJpaRepositorio;
+import com.uisrael.apipsip.infraestructura.respositorios.IMensajeClienteJpaRepositorio;
+import com.uisrael.apipsip.infraestructura.respositorios.IFotoVerificacionJpaRepositorio;
+import com.uisrael.apipsip.infraestructura.respositorios.IHistorialEstadoJpaRepositorio;
+import com.uisrael.apipsip.infraestructura.respositorios.IPaginaWebJpaRepositorio;
+//Mapeadores (MapStruct)
+import com.uisrael.apipsip.infraestructura.presistencia.mapeadores.IAnexoDocumentoJpaMapper;
+import com.uisrael.apipsip.infraestructura.presistencia.mapeadores.IMensajeClienteJpaMapper;
+import com.uisrael.apipsip.infraestructura.presistencia.mapeadores.IFotoVerificacionJpaMapper;
+import com.uisrael.apipsip.infraestructura.presistencia.mapeadores.IHistorialEstadoJpaMapper;
+import com.uisrael.apipsip.infraestructura.presistencia.mapeadores.IPaginaWebJpaMapper;
 
 @Configuration
 public class ConfiguracionGeneral {
@@ -90,5 +119,63 @@ public class ConfiguracionGeneral {
 	        return new TipoServicioRepositorioImpl(jpaRepositorio, mapper);
 	    }
 
+	    @Bean
+	    IAnexoDocumentoUseCase anexoDocumentoUseCase(IAnexoDocumentoRepositorio repositorio) {
+	        return new AnexoDocumentoUseCaseImpl(repositorio);
+	    }
 
+	    @Bean
+	    IMensajeClienteUseCase mensajeClienteUseCase(IMensajeClienteRepositorio repositorio) {
+	        return new MensajeClienteUseCaseImpl(repositorio);
+	    }
+
+	    @Bean
+	    IFotoVerificacionUseCase fotoVerificacionUseCase(IFotoVerificacionRepositorio repositorio) {
+	        return new FotoVerificacionUseCaseImpl(repositorio);
+	    }
+
+	    @Bean
+	    IHistorialEstadoUseCase historialEstadoUseCase(IHistorialEstadoRepositorio repositorio) {
+	        return new HistorialEstadoUseCaseImpl(repositorio);
+	    }
+
+	    @Bean
+	    IPaginaWebUseCase paginaWebUseCase(IPaginaWebRepositorio repositorio) {
+	        return new PaginaWebUseCaseImpl(repositorio);
+	    }
+
+	    @Bean
+	    IAnexoDocumentoRepositorio anexoDocumentoRepositorio(
+	            IAnexoDocumentoJpaRepositorio jpaRepositorio,
+	            IAnexoDocumentoJpaMapper mapper) {
+	        return new AnexoDocumentoRepositorioImpl(jpaRepositorio, mapper);
+	    }
+
+	    @Bean
+	    IMensajeClienteRepositorio mensajeClienteRepositorio(
+	            IMensajeClienteJpaRepositorio jpaRepositorio,
+	            IMensajeClienteJpaMapper mapper) {
+	        return new MensajeClienteRepositorioImpl(jpaRepositorio, mapper);
+	    }
+
+	    @Bean
+	    IFotoVerificacionRepositorio fotoVerificacionRepositorio(
+	            IFotoVerificacionJpaRepositorio jpaRepositorio,
+	            IFotoVerificacionJpaMapper mapper) {
+	        return new FotoVerificacionRepositorioImpl(jpaRepositorio, mapper);
+	    }
+
+	    @Bean
+	    IHistorialEstadoRepositorio historialEstadoRepositorio(
+	            IHistorialEstadoJpaRepositorio jpaRepositorio,
+	            IHistorialEstadoJpaMapper mapper) {
+	        return new HistorialEstadoRepositorioImpl(jpaRepositorio, mapper);
+	    }
+
+	    @Bean
+	    IPaginaWebRepositorio paginaWebRepositorio(
+	            IPaginaWebJpaRepositorio jpaRepositorio,
+	            IPaginaWebJpaMapper mapper) {
+	        return new PaginaWebRepositorioImpl(jpaRepositorio, mapper);
+	    }
 }
