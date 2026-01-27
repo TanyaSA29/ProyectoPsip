@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en"
+xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/plantilla/plantillaui">
+  <head>
+    <title>Listar Orden</title>
+   
+  </head>
+
+  <body>
+  <div layout:fragment="contenidopaginas">
+  
+    <div class="card">
+        <div class="card-body">
+
+            <div class="d-md-flex align-items-center mb-3">
+                <div>
+                    <h4 class="card-title">Gestión de Órdenes</h4>
+                    <p class="card-subtitle">Listado de órdenes registradas</p>
+                </div>
+                <div class="ms-auto">
+                    <a th:href="@{/orden/nueva}" class="btn btn-success text-white">
+                        Nueva Orden
+                    </a>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="o : ${ordenes}">
+                            <td th:text="${o.idOrden}"></td>
+                            <td th:text="${o.cliente.nombre}"></td>
+                            <td th:text="${o.fecha}"></td>
+                            <td th:text="${o.descripcion}"></td>
+                            <td>
+                                <span th:if="${o.estado}" class="badge bg-success">Activa</span>
+                                <span th:unless="${o.estado}" class="badge bg-secondary">Cerrada</span>
+                            </td>
+                            <td class="text-center">
+                                <a th:href="@{/orden/editar/{id}(id=${o.idOrden})}" 
+                                   class="btn btn-info btn-sm">Editar</a>
+                                <a th:href="@{/orden/eliminar/{id}(id=${o.idOrden})}" 
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('¿Eliminar esta orden?')">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+  
+  </body>
+</html>

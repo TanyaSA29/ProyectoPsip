@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en"
+xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/plantilla/plantillaui">
+  <head>
+    <title>Nueva Orden</title>
+   
+  </head>
+
+  <body>
+<div layout:fragment="contenidopaginas">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Generar Orden de Trabajo</h4>
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label class="form-label fw-bold">1. Seleccione el Cliente</label>
+                            <select class="form-select border-primary" id="select-cliente">
+                                <option value="">-- Buscar Cliente --</option>
+                                <option value="1">Juan Pérez (juan@mail.com)</option>
+                                <option value="2">María López (maria@mail.com)</option>
+                            </select>
+                            <small class="text-muted">Al elegir el cliente, se cargarán sus equipos registrados.</small>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label class="form-label fw-bold">2. Seleccione el Equipo del Cliente</label>
+                            <select class="form-select" id="select-equipo" disabled>
+                                <option value="">-- Primero elija un cliente --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Técnico Asignado</label>
+                            <select class="form-select">
+                                <option>Técnico A</option>
+                                <option>Técnico B</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Fecha de Entrega Estimada</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Falla Reportada / Observaciones</label>
+                        <textarea class="form-control" rows="3" placeholder="Describa el problema del equipo..."></textarea>
+                    </div>
+
+                    <div class="text-end border-top pt-3">
+                        <button type="button" class="btn btn-primary btn-lg">Crear Orden de Trabajo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Esto simula lo que pasaría cuando conectes el sistema real
+        document.getElementById('select-cliente').addEventListener('change', function() {
+            const equipoSelect = document.getElementById('select-equipo');
+            
+            if(this.value !== "") {
+                equipoSelect.disabled = false;
+                // Simulación de carga de equipos
+                equipoSelect.innerHTML = `
+                    <option value="">-- Seleccione un equipo --</option>
+                    <option value="101">Laptop Dell Latitude (S/N: 12345)</option>
+                    <option value="102">Impresora HP Laser (S/N: 67890)</option>
+                `;
+            } else {
+                equipoSelect.disabled = true;
+                equipoSelect.innerHTML = '<option value="">-- Primero elija un cliente --</option>';
+            }
+        });
+    </script>
+</body>
+</html>
