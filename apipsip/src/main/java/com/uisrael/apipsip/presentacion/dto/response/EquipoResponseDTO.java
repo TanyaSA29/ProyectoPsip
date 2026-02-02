@@ -5,6 +5,7 @@ package com.uisrael.apipsip.presentacion.dto.response;
 public class EquipoResponseDTO {
 	
 	private  int idEquipo;
+	  private int idCliente; 
 	
 	private  String marca;
 	
@@ -20,6 +21,14 @@ public class EquipoResponseDTO {
 
 	public void setIdEquipo(int idEquipo) {
 		this.idEquipo = idEquipo;
+	}
+
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getMarca() {
@@ -54,4 +63,7 @@ public class EquipoResponseDTO {
 		this.descripcion = descripcion;
 	}
 
+	
+
+	
 }

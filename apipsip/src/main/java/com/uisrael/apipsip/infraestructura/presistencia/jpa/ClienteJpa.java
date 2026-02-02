@@ -16,19 +16,19 @@ import lombok.Data;
 
 
 public class ClienteJpa implements Serializable{
-
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private  int idCliente;
-	@Column(name = "cli_nombre", length =  80)
-	private  String nombre;
-	private  String email; 
-	private String telefono;
-	private  String direccion;
-	private boolean estado;
-	
-	
-	
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cliente") // <--- ESTO FALTA
+    private int idCliente;
+
+    @Column(length = 80)
+    private String nombre;
+    
+  
+    private String email; 
+    private String telefono;
+    private String direccion;
+    private boolean estado;
 
 }

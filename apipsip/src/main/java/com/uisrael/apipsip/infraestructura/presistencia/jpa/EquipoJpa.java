@@ -11,15 +11,19 @@ public class EquipoJpa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idEquipo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_equipo") 
+    private int idEquipo;
 
-	private String marca;
-	private String modelo;
+    @Column(name = "id_cliente") 
+    private int idCliente;
 
-	@Column(name = "num_serie")
-	private String numSerie;
+    private String marca;
+    private String modelo;
 
-	private String descripcion;
+    @Column(name = "num_serie") 
+    private String numSerie;
+
+    private String descripcion;
 }

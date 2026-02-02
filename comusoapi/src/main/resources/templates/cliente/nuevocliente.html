@@ -7,63 +7,73 @@ xmlns:th="http://www.thymeleaf.org"
     <title>Nuevo Cliente</title>
 </head>
 <body>
-   <div layout:fragment="contenidopaginas">
-        <div class="card">
-            <div class="card-body">
-                <form class="form-horizontal">
-                    
-                    <h4 class="card-title text-primary"><i class="mdi mdi-account"></i> Datos Personales del Cliente</h4>
-                    <hr>
-                    <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label text-end">Nombre</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="Nombre completo">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label text-end">Email</label>
-                        <div class="col-sm-9">
-                            <input type="email" class="form-control" placeholder="correo@ejemplo.com">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label text-end">Teléfono</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="099-999-9999">
-                        </div>
-                    </div>
+<div layout:fragment="contenidopaginas">
+    <div class="card">
+        <div class="card-body">
 
-                    <h4 class="card-title text-primary mt-5"><i class="mdi mdi-laptop"></i> Información del Equipo</h4>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Tipo de Equipo</label>
-                            <select class="form-select">
-                                <option>Laptop</option>
-                                <option>Desktop</option>
-                                <option>Impresora</option>
-                                <option>Otro</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Marca / Modelo</label>
-                            <input type="text" class="form-control" placeholder="Ej: Dell Latitude 5420">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label class="form-label">Serie / Placa</label>
-                            <input type="text" class="form-control" placeholder="Número de serie del fabricante">
-                        </div>
-                    </div>
-
-                    <div class="border-top pt-3 text-end">
-                        <button type="button" class="btn btn-success text-white">Registrar Cliente y Equipo</button>
-                        <a href="#" class="btn btn-secondary">Cancelar</a>
-                    </div>
-                </form>
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="mdi mdi-alert-circle"></i>
+                <strong th:text="${error}"></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+
+            <form th:action="@{/cliente/nuevo}" method="post" class="form-horizontal">
+
+                <h4 class="card-title text-primary">
+                    <i class="mdi mdi-account"></i> Datos del Cliente
+                </h4>
+                <hr>
+
+                <input type="hidden" th:field="${clienteDTO.estado}" th:value="true" />
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" th:field="${clienteDTO.nombre}" placeholder="Nombre del Cliente" />
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" th:field="${clienteDTO.email}" placeholder="Email" />
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" th:field="${clienteDTO.telefono}" placeholder="Teléfono" />
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" th:field="${clienteDTO.direccion}" placeholder="Dirección" />
+                </div>
+
+                <h4 class="card-title text-primary mt-4">
+                    <i class="mdi mdi-laptop"></i> Datos del Equipo
+                </h4>
+                <hr>
+
+                <div class="mb-3">
+                    <select class="form-select" name="tipo">
+                        <option value="">Seleccione Tipo</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Desktop">Desktop</option>
+                        <option value="Impresora">Impresora</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" th:field="${equipoDTO.marca}" placeholder="Marca" />
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" th:field="${equipoDTO.modelo}" placeholder="Modelo" />
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" th:field="${equipoDTO.numSerie}" placeholder="Número de Serie" />
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" th:field="${equipoDTO.descripcion}" placeholder="Descripción del problema"></textarea>
+                </div>
+
+                <div class="text-end mt-3">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <a th:href="@{/cliente/listar}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 </body>
 </html>

@@ -9,5 +9,5 @@ public interface IOrdenTrabajoUseCase {
     OrdenTrabajo obtenerPorId(int id);
     List<OrdenTrabajo> listar();
     void eliminar(int id);
-
+    OrdenTrabajo actualizar(int id, OrdenTrabajo orden);
 }

@@ -34,4 +34,10 @@ public class OrdenTrabajoUseCaseImpl implements IOrdenTrabajoUseCase {
     public void eliminar(int id) {
         repositorio.eliminar(id);
     }
+    @Override
+    public OrdenTrabajo actualizar(int id, OrdenTrabajo orden) {
+        return repositorio.buscarPorId(id)
+            .map(existente -> repositorio.guardar(orden))
+            .orElseThrow(() -> new RuntimeException("Orden no encontrada"));
+    }
 }

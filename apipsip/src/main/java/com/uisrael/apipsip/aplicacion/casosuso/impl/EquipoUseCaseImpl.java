@@ -34,4 +34,11 @@ public class EquipoUseCaseImpl implements IEquipoUseCase {
     public void eliminar(int id) {
         repositorio.eliminar(id);
     }
+
+    @Override
+    public Equipo actualizar(int id, Equipo equipo) {
+        return repositorio.buscarPorId(id)
+            .map(existente -> repositorio.guardar(equipo))
+            .orElseThrow(() -> new RuntimeException("Equipo no encontrado"));
+    }
 }

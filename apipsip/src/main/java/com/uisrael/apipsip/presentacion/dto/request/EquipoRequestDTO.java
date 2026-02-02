@@ -8,6 +8,8 @@ public class EquipoRequestDTO {
 	@NotBlank
 	private  int idEquipo;
 	@NotBlank
+	private int idCliente; 
+	@NotBlank
 	private  String marca;
 	@NotBlank
 	private  String modelo;

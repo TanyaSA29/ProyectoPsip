@@ -9,5 +9,5 @@ public interface ITecnicoUseCase {
     Tecnico obtenerPorId(int id);
     List<Tecnico> listar();
     void eliminar(int id);
-
+    Tecnico actualizar(int id, Tecnico tecnico);
 }

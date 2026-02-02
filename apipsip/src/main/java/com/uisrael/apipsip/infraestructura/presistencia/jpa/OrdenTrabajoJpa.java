@@ -20,19 +20,19 @@ public class OrdenTrabajoJpa implements Serializable {
 	private String codigo;
 
 	@ManyToOne
-	@JoinColumn(name = "id_cliente")
+	
 	private ClienteJpa cliente;
 
 	@ManyToOne
-	@JoinColumn(name = "id_tecnico")
+
 	private TecnicoJpa tecnico;
 
 	@ManyToOne
-	@JoinColumn(name = "id_tipo_servicio")
+	
 	private TipoServicioJpa tipoServicio;
 
 	@ManyToOne
-	@JoinColumn(name = "id_equipo")
+
 	private EquipoJpa equipo;
 
 	private LocalDate fechaSolicitud;
@@ -40,7 +40,7 @@ public class OrdenTrabajoJpa implements Serializable {
 	private LocalTime horaAgendada;
 	private String estado;
 
-	@Column(name = "descripcion_trabajo")
+
 	private String descripcionTrabajo;
 
 	private String observaciones;

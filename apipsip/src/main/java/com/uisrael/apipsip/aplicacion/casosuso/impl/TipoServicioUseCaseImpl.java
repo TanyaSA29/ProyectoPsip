@@ -34,4 +34,10 @@ public class TipoServicioUseCaseImpl implements ITipoServicioUseCase {
     public void eliminar(int id) {
         repositorio.eliminar(id);
     }
+    @Override
+    public TipoServicio actualizar(int id, TipoServicio tipo) {
+        return repositorio.buscarPorId(id)
+            .map(existente -> repositorio.guardar(tipo))
+            .orElseThrow(() -> new RuntimeException("Tipo de servicio no encontrado"));
+    }
 }

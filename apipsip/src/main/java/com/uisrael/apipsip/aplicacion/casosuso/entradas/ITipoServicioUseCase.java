@@ -9,5 +9,6 @@ public interface ITipoServicioUseCase {
     TipoServicio obtenerPorId(int id);
     List<TipoServicio> listar();
     void eliminar(int id);
+    TipoServicio actualizar(int id, TipoServicio tipoServicio);
 
 }

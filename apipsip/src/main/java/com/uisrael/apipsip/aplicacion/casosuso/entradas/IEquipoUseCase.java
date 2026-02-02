@@ -9,5 +9,6 @@ public interface IEquipoUseCase {
     Equipo obtenerPorId(int id);
     List<Equipo> listar();
     void eliminar(int id);
+    Equipo actualizar(int id, Equipo equipo);
 
 }

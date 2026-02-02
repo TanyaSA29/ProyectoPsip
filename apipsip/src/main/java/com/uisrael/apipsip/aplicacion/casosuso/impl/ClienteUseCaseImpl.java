@@ -37,4 +37,10 @@ public class ClienteUseCaseImpl implements IClienteUseCase{
 		
 	}
 
+	@Override
+	public Cliente actualizar(int id, Cliente cliente) {
+		return repositorio.buscarPorId(id)
+		        .map(existente -> repositorio.guardar(cliente))
+		        .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+		}
 }

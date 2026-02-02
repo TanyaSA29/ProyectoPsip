@@ -34,4 +34,10 @@ public class TecnicoUseCaseImpl implements ITecnicoUseCase {
     public void eliminar(int id) {
         repositorio.eliminar(id);
     }
+    @Override
+    public Tecnico actualizar(int id, Tecnico tecnico) {
+        return repositorio.buscarPorId(id)
+            .map(existente -> repositorio.guardar(tecnico))
+            .orElseThrow(() -> new RuntimeException("Tecnico no encontrado"));
+    }
 }

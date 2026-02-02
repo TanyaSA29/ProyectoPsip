@@ -16,7 +16,7 @@ public class ClienteRequestDTO {
 	private  String telefono;
 	@NotBlank
 	private String direccion;
-	@NotBlank
+
 	private boolean estado;
 	
 }
