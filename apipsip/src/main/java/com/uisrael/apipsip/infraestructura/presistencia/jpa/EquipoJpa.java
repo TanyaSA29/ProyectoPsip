@@ -15,15 +15,11 @@ public class EquipoJpa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_equipo") 
     private int idEquipo;
-
     @Column(name = "id_cliente") 
     private int idCliente;
-
     private String marca;
     private String modelo;
-
     @Column(name = "num_serie") 
     private String numSerie;
-
     private String descripcion;
 }

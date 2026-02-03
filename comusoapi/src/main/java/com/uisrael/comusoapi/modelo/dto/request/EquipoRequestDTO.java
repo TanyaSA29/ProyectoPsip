@@ -10,7 +10,6 @@ public class EquipoRequestDTO {
 
 	@JsonProperty("id_equipo")
     private int idEquipo;
-
     @JsonProperty("id_cliente") 
     private int idCliente;
 	private  String marca;

@@ -10,16 +10,13 @@ public class OrdenTrabajoRequestDTO {
 
 	private int idOrden;
     private String codigo;
-
     private int idCliente;
     private int idTecnico;
     private int idTipoServicio;
     private int idEquipo;
-
     private LocalDate fechaSolicitud;
     private LocalDate fechaAgendada;
     private LocalTime horaAgendada;
-
     private String estado;
     private String descripcionTrabajo;
     private String observaciones;

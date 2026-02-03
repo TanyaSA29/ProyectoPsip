@@ -59,22 +59,29 @@ public class ClienteServicioImpl implements IClienteServicio{
     @Override
     public ClienteResponseDTO buscarClientePorId(int id) {
         return clienteWeb.get()
-                .uri(uriBuilder -> uriBuilder.path("/cliente").queryParam("id_cliente", "eq." + id).build())
-                .retrieve().bodyToFlux(ClienteResponseDTO.class).next().block();
+                .uri("/cliente/{id}", id) // Limpio y directo
+                .retrieve()
+                .bodyToMono(ClienteResponseDTO.class)
+                .block();
     }
 
     @Override
     public void actualizarCliente(ClienteRequestDTO dto) {
         clienteWeb.put()
-                .uri(uriBuilder -> uriBuilder.path("/cliente").queryParam("id_cliente", "eq." + dto.getIdCliente()).build())
-                .bodyValue(dto).retrieve().toBodilessEntity().block();
+                .uri("/cliente/{id}", dto.getIdCliente())
+                .bodyValue(dto)
+                .retrieve()
+                .toBodilessEntity()
+                .block();
     }
 
     @Override
     public void eliminarCliente(int id) {
         clienteWeb.delete()
-                .uri(uriBuilder -> uriBuilder.path("/cliente").queryParam("id_cliente", "eq." + id).build())
-                .retrieve().toBodilessEntity().block();
+                .uri("/cliente/{id}", id) 
+                .retrieve()
+                .toBodilessEntity()
+                .block();
     }
 }
 

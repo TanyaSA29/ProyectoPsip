@@ -49,20 +49,20 @@ xmlns:th="http://www.thymeleaf.org"
 						            <span th:if="${c.estado}" class="badge rounded-pill bg-success">Activo</span>
 						            <span th:unless="${c.estado}" class="badge rounded-pill bg-danger">Inactivo</span>
 						        </td>
-						        <td class="text-center">
-						            <div class="btn-group">
-						                <a th:href="@{/cliente/editar/{id}(id=${c.idCliente})}" 
-						                   class="btn btn-info btn-sm" title="Editar">
-						                    <i class="mdi mdi-pencil text-white"></i>
-						                </a>
-						                <a th:href="@{/cliente/eliminar/{id}(id=${c.idCliente})}" 
-						                   class="btn btn-danger btn-sm" 
-						                   onclick="return confirm('¿Seguro que desea eliminar este cliente?')" 
-						                   title="Eliminar">
-						                    <i class="mdi mdi-delete text-white"></i>
-						                </a>
-						            </div>
-						        </td>
+						       <td class="text-center">
+							    <div class="btn-group">
+							        <a th:href="@{/cliente/editar/{id}(id=${c.idCliente})}" 
+							           class="btn btn-info btn-sm">
+							            <i class="mdi mdi-pencil text-white"></i>
+							        </a>
+							        
+							        <a th:href="@{/cliente/eliminar/{id}(id=${c.idCliente})}" 
+							           class="btn btn-danger btn-sm" 
+							           onclick="return confirm('¿Seguro que desea eliminar?')">
+							            <i class="mdi mdi-delete text-white"></i>
+							        </a>
+							    </div>
+							</td>
 						    </tr>
 						</tbody>
                 </table>
