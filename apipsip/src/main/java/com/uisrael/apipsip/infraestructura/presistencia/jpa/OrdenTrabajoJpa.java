@@ -8,40 +8,38 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "orden_trabajo")
+@Table(name = "ordentrabajo")
 public class OrdenTrabajoJpa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idOrden;
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "idorden")
+	    private int idOrden;
 
-	private String codigo;
+	    private String codigo;
 
-	@ManyToOne
-	
-	private ClienteJpa cliente;
+	    @ManyToOne
+	    @JoinColumn(name = "idcliente")
+	    private ClienteJpa cliente;
 
-	@ManyToOne
+	    @ManyToOne
+	    @JoinColumn(name = "idtecnico")
+	    private TecnicoJpa tecnico;
 
-	private TecnicoJpa tecnico;
+	    @ManyToOne
+	    @JoinColumn(name = "idtipo")
+	    private TipoServicioJpa tipoServicio;
 
-	@ManyToOne
-	
-	private TipoServicioJpa tipoServicio;
+	    @ManyToOne
+	    @JoinColumn(name = "idequipo")
+	    private EquipoJpa equipo;
 
-	@ManyToOne
-
-	private EquipoJpa equipo;
-
-	private LocalDate fechaSolicitud;
-	private LocalDate fechaAgendada;
-	private LocalTime horaAgendada;
-	private String estado;
-
-
-	private String descripcionTrabajo;
-
-	private String observaciones;
-}
+	    private LocalDate fechaSolicitud;
+	    private LocalDate fechaAgendada;
+	    private LocalTime horaAgendada;
+	    private String estado;
+	    private String descripcionTrabajo;
+	    private String observaciones;
+	}

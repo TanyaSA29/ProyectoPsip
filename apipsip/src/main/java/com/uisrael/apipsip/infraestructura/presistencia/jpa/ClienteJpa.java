@@ -19,13 +19,20 @@ public class ClienteJpa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente") 
+	 @Column(name = "idcliente")
     private int idCliente;
-    @Column(length = 80)
-    private String nombre; 
-    private String email; 
-    private String telefono;
-    private String direccion;
-    private boolean estado;
 
+    @Column(length = 80, nullable = false)
+    private String nombre;
+
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String telefono;
+
+    @Column(nullable = false)
+    private String direccion;
+
+    private boolean estado;
 }

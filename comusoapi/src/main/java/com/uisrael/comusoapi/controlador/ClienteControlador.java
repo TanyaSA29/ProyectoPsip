@@ -34,15 +34,13 @@ public class ClienteControlador {
     }
     
     
-
     @GetMapping("/nuevo")
     public String nuevoCliente(Model model) {
-
         model.addAttribute("clienteDTO", new ClienteRequestDTO());
         model.addAttribute("equipoDTO", new EquipoRequestDTO());
-
         return "cliente/nuevocliente";
     }
+
  
     @PostMapping("/nuevo")
     public String guardar(@ModelAttribute("clienteDTO") ClienteRequestDTO clienteDTO, 

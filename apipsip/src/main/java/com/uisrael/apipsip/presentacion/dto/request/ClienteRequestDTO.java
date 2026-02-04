@@ -1,5 +1,5 @@
 package com.uisrael.apipsip.presentacion.dto.request;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.Data;
 public class ClienteRequestDTO {
 
 	
-	@JsonProperty("id_cliente") // Esto permite que el 8081 vea el ID real
+	
     private int idCliente;
 
     @NotBlank(message = "El nombre es obligatorio")

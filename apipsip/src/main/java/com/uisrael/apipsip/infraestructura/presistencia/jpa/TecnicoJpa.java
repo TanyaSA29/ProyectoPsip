@@ -14,6 +14,7 @@ public class TecnicoJpa implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idtecnico")
 	private int idTecnico;
 	private String nombre;
 	private String email;
