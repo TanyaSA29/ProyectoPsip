@@ -12,7 +12,9 @@
 			        <div class="card-body">
 			            <h4 class="card-title">Ingreso de Equipo nuevo</h4>
 			         <form th:action="@{/equipo/guardar}" th:object="${equipoDTO}" method="post">
+				    <input type="hidden" th:field="*{idEquipo}" />
 				    <input type="hidden" th:field="*{idCliente}" />
+   	
 				    
 				    <div class="row">
 				        <div class="col-md-6 mb-3">

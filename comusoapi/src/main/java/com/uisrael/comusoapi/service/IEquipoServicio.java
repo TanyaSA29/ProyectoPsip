@@ -10,4 +10,6 @@ public interface IEquipoServicio {
     public void crearEquipo(EquipoRequestDTO dto);
     public EquipoResponseDTO buscarEquipoPorId(int id);
     public List<EquipoResponseDTO> listarEquiposPorCliente(int idCliente);
-}
+    void actualizarEquipo(int id, EquipoRequestDTO dto);
+    void eliminarEquipo(int id);}
+

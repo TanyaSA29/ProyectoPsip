@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uisrael.comusoapi.modelo.dto.request.EquipoRequestDTO;
+import com.uisrael.comusoapi.modelo.dto.response.EquipoResponseDTO;
 import com.uisrael.comusoapi.service.IEquipoServicio;
 
 @Controller
@@ -22,30 +23,46 @@ public class EquipoControlador {
     @Autowired
     private IEquipoServicio servicioEquipo;
 
-    // 1. Listar equipos (Ruta: equipo/listarequipos.html)
+    
     @GetMapping("/listarPorCliente/{id}")
     public String listarPorCliente(@PathVariable int id, Model model) {
         model.addAttribute("listaequipos", servicioEquipo.listarEquiposPorCliente(id));
         model.addAttribute("idCliente", id);
-        return "equipo/listarequipos"; // Nombre exacto de tu archivo
+        return "equipo/listarequipos"; 
     }
 
-    // 2. Formulario para nuevo equipo (Ruta: equipo/nuevoequipo.html)
+
     @GetMapping("/nuevo")
     public String nuevoEquipo(@RequestParam(name = "idCliente") int idCliente, Model model) {
         EquipoRequestDTO equipoDTO = new EquipoRequestDTO();
-        equipoDTO.setIdCliente(idCliente); // Importante para que el formulario sepa de quién es el equipo
+        equipoDTO.setIdCliente(idCliente); 
         
         model.addAttribute("idCliente", idCliente);
         model.addAttribute("equipoDTO", equipoDTO);
-        return "equipo/nuevoequipo"; // Nombre exacto de tu archivo
+        return "equipo/nuevoequipo"; 
     }
 
-    // 3. Guardar y regresar a la lista de equipos del cliente
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute("equipoDTO") EquipoRequestDTO equipoDTO) {
+      
         servicioEquipo.crearEquipo(equipoDTO);
-        // Redirigimos a la lista de equipos para ver el equipo recién creado
         return "redirect:/equipo/listarPorCliente/" + equipoDTO.getIdCliente();
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable int id, Model model) {
+        EquipoResponseDTO equipo = servicioEquipo.buscarEquipoPorId(id);
+         model.addAttribute("equipoDTO", equipo); 
+        model.addAttribute("idCliente", equipo.getIdCliente());
+        
+        return "equipo/nuevoequipo"; 
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable int id) {
+        int idClie = servicioEquipo.buscarEquipoPorId(id).getIdCliente();
+        
+         servicioEquipo.eliminarEquipo(id);
+        return "redirect:/equipo/listarPorCliente/" + idClie;
     }
 }

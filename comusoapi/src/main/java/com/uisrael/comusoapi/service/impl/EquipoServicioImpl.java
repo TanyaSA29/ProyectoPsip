@@ -42,21 +42,41 @@ public class EquipoServicioImpl implements IEquipoServicio {
     @Override
     public EquipoResponseDTO buscarEquipoPorId(int id) {
         return webClient.get()
-                .uri(uriBuilder -> uriBuilder.path("/equipo").queryParam("id_equipo", "eq." + id).build())
-                .retrieve().bodyToMono(EquipoResponseDTO.class).block();
+                .uri("/equipo/{id}", id)
+                .retrieve()
+                .bodyToMono(EquipoResponseDTO.class)
+                .block();
     }
-
+ 
     @Override
     public List<EquipoResponseDTO> listarEquiposPorCliente(int idCliente) {
-        // IMPORTANTE: Cambiamos "id_cliente" por "idCliente" (Exactamente como tu Entidad)
         return webClient.get()
-                .uri(uriBuilder -> uriBuilder
-                    .path("/equipo")
-                    .queryParam("idCliente", "eq." + idCliente) 
-                    .build())
+                .uri("/equipo/cliente/{id}", idCliente) 
                 .retrieve()
                 .bodyToFlux(EquipoResponseDTO.class)
                 .collectList()
                 .block();
     }
+
+
+
+	@Override
+	public void eliminarEquipo(int id) {
+	    webClient.delete()
+	            .uri("/equipo/{id}", id)
+	            .retrieve()
+	            .toBodilessEntity()
+	            .block();
+	}
+	@Override
+	public void actualizarEquipo(int id, EquipoRequestDTO dto) {
+	   
+	    webClient.post() 
+	            .uri("/equipo") 
+	            .bodyValue(dto)
+	            .retrieve()
+	            .toBodilessEntity()
+	            .block();
+	}
+    
 }
