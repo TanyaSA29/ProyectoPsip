@@ -8,65 +8,59 @@
 </head>
 <body>
 <div layout:fragment="contenidopaginas">
-    <div class="card">
-        <div class="card-header bg-dark text-white">
-            <h4 class="card-title mb-0">Registro Rápido de Cliente</h4>
-        </div>
-        <div class="card-body">
-            <form th:action="@{/cliente/guardar}" th:object="${cliente}" method="post">
-                
-                <input type="hidden" th:field="*{idCliente}" />
+    <div class="container-fluid">
+        <div class="card shadow">
+            <div class="card-body">
+                <h4 class="card-title text-primary">REGISTRO RÁPIDO DE CLIENTE - ICPE S.A.S.</h4>
+                <hr>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="fw-bold">Nombre Completo</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="mdi mdi-account"></i></span>
-                            <input type="text" th:field="*{nombre}" class="form-control" placeholder="Ej: Juan Pérez" required />
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="fw-bold">Dirección</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="mdi mdi-map-marker"></i></span>
-                            <input type="text" th:field="*{direccion}" class="form-control" placeholder="Calle principal y secundaria" />
-                        </div>
-                    </div>
-                </div>
+                <form th:action="@{/cliente/guardar}" th:object="${cliente}" method="post" class="mt-4">
+                    
+                    <input type="hidden" th:field="*{idCliente}" />
 
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label class="fw-bold">Email</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="mdi mdi-email"></i></span>
-                            <input type="email" th:field="*{email}" class="form-control" placeholder="correo@ejemplo.com" />
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Nombre Completo</label>
+                            <input type="text" th:field="*{nombre}" class="form-control border-primary" 
+                                   placeholder="Ej: Juan Pérez" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Dirección de Domicilio</label>
+                            <input type="text" th:field="*{direccion}" class="form-control" 
+                                   placeholder="Calle principal y secundaria" />
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="fw-bold">Teléfono</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="mdi mdi-phone"></i></span>
-                            <input type="text" th:field="*{telefono}" class="form-control" placeholder="0999999999" />
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="fw-bold">Estado del Cliente</label>
-                        <select th:field="*{estado}" class="form-select shadow-none">
-                            <option th:value="true">Activo</option>
-                            <option th:value="false">Inactivo</option>
-                        </select>
-                    </div>
-                </div>
 
-                <div class="border-top pt-3 text-end">
-                    <button type="submit" class="btn btn-success text-white px-4">
-                        <i class="mdi mdi-content-save"></i> Siguiente
-                    </button>
-                    <a th:href="@{/cliente/listar}" class="btn btn-secondary px-4">
-                        <i class="mdi mdi-arrow-left"></i> Cancelar
-                    </a>
-                </div>
-            </form>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Correo Electrónico</label>
+                            <input type="email" th:field="*{email}" class="form-control" 
+                                   placeholder="correo@ejemplo.com" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Teléfono de Contacto</label>
+                            <input type="text" th:field="*{telefono}" class="form-control" 
+                                   placeholder="0999999999" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Estado del Cliente</label>
+                            <select th:field="*{estado}" class="form-select">
+                                <option th:value="true">Activo</option>
+                                <option th:value="false">Inactivo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="py-3"></div>
+
+                    <div class="border-top pt-3 text-end">
+                        <a th:href="@{/cliente/listar}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="mdi mdi-content-save"></i> Guardar Cliente
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

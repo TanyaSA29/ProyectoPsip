@@ -8,47 +8,53 @@
 </head>
 <body>
 <div layout:fragment="contenidopaginas">
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Ingreso de Equipo nuevo</h4>
-			         <form th:action="@{/equipo/guardar}" th:object="${equipoDTO}" method="post">
-				    <input type="hidden" th:field="*{idEquipo}" />
-				    <input type="hidden" th:field="*{idCliente}" />
-   	
-				    
-				    <div class="row">
-				        <div class="col-md-6 mb-3">
-				            <label>Marca</label>
-				            <input type="text" th:field="*{marca}" class="form-control" required />
-				        </div>
-				        <div class="col-md-6 mb-3">
-				            <label>Modelo</label>
-				            <input type="text" th:field="*{modelo}" class="form-control" required />
-				        </div>
-				    </div>
-				
-				    <div class="row">
-				        <div class="col-md-6 mb-3">
-				            <label>Número de Serie</label>
-				            <input type="text" th:field="*{numSerie}" class="form-control" />
-				        </div>
-				        <div class="col-md-6 mb-3">
-				            <label>Descripción</label>
-				            <textarea th:field="*{descripcion}" class="form-control"></textarea>
-				        </div>
-				    </div>
-				
-				    <div class="border-top pt-3 text-center">
-				        <button type="submit" class="btn btn-success text-white">
-				            <i class="mdi mdi-check"></i> Guardar Equipo
-				        </button>
-				        <a th:href="@{/equipo/listarPorCliente/{id}(id=${idCliente})}" class="btn btn-secondary">
-				            <i class="mdi mdi-arrow-left"></i> Cancelar
-				        </a>
-				    </div>
-				</form>
+    <div class="container-fluid">
+        <div class="card shadow">
+            <div class="card-body">
+                <h4 class="card-title text-primary">INGRESO DE EQUIPO NUEVO - ICPE S.A.S.</h4>
+                <hr>
+
+                <form th:action="@{/equipo/guardar}" th:object="${equipoDTO}" method="post" class="mt-4">
+                    <input type="hidden" th:field="*{idEquipo}" />
+                    <input type="hidden" th:field="*{idCliente}" />
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Marca</label>
+                            <input type="text" th:field="*{marca}" class="form-control border-primary" placeholder="Ej: Dell, HP, Lenovo..." required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Modelo</label>
+                            <input type="text" th:field="*{modelo}" class="form-control" placeholder="Ej: Latitude 3420" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Número de Serie</label>
+                            <input type="text" th:field="*{numSerie}" class="form-control" placeholder="S/N único del fabricante" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Descripción del Equipo</label>
+                            <textarea th:field="*{descripcion}" class="form-control" rows="2" placeholder="Ej: Laptop color negro, incluye cargador..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="py-2"></div>
+
+                    <div class="border-top pt-3 text-end">
+                        <a th:href="@{/equipo/listarPorCliente/{id}(id=${idCliente})}" class="btn btn-secondary px-4">
+                            Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="mdi mdi-content-save"></i> Guardar Equipo
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
