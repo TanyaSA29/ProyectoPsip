@@ -1,69 +1,91 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en"
-xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="/plantilla/plantillaui">
-  <head>
-    <title>Listar Orden</title>
-   
-  </head>
-
-  <body>
-  <div layout:fragment="contenidopaginas">
-  
-    <div class="card">
-        <div class="card-body">
-
-            <div class="d-md-flex align-items-center mb-3">
-                <div>
-                    <h4 class="card-title">Gestión de Órdenes</h4>
-                    <p class="card-subtitle">Listado de órdenes registradas</p>
+      layout:decorate="~{plantilla/plantillaui}">
+<head>
+    <title>Gestión de Órdenes - ICPE S.A.S.</title>
+</head>
+<body>
+<div layout:fragment="contenidopaginas">
+    <div class="container-fluid">
+        <div class="card shadow-sm border-0 mt-3">
+            <div class="card-body p-0"> <div class="p-4 d-md-flex align-items-center justify-content-between">
+                    <div>
+                        <h4 class="card-title text-primary fw-bold mb-1">
+                             GESTIÓN DE ÓRDENES
+                        </h4>
+                        <p class="card-subtitle text-muted small">Registro centralizado de servicios técnicos</p>
+                    </div>
+                    <div>
+                        <a th:href="@{/orden/nueva}" class="btn btn-primary btn-sm px-4 shadow-sm">
+                            <i class="mdi mdi-plus"></i> NUEVA ORDEN
+                        </a>
+                    </div>
                 </div>
-                <div class="ms-auto">
-                    <a th:href="@{/orden/nueva}" class="btn btn-success text-white">
-                        Nueva Orden
-                    </a>
-                </div>
+				<div class="table-responsive">
+				    <table class="table table-hover mb-0">
+				        <thead style="background-color: #2c3e50;">
+				            <tr>
+				                <th class="text-uppercase small fw-bold ps-4 text-white">Código</th>
+				                <th class="text-uppercase small fw-bold text-white">Solicitud</th>
+				                <th class="text-uppercase small fw-bold text-white">Entrega</th>
+				                <th class="text-uppercase small fw-bold text-white">Descripción</th>
+				                <th class="text-uppercase small fw-bold text-white">Estado</th>
+				                <th class="text-uppercase small fw-bold text-center pe-4 text-white">Acciones</th>
+				            </tr>
+				        </thead>
+				        <tbody class="bg-white">
+				            <tr th:each="o : ${listaordenes}" class="border-bottom">
+				                <td class="ps-4 fw-bold" style="color: #6f42c1;" th:text="${o.codigo}"></td>
+				                
+				                <td class="text-muted" th:text="${#temporals.format(o.fechaSolicitud, 'dd/MM/yyyy')}"></td>
+				                
+				                <td>
+				                    <span class="text-primary">
+				                        <i class="mdi mdi-calendar-blank-check-outline me-1"></i> 
+				                        <span th:text="${#temporals.format(o.fechaCita, 'dd/MM/yyyy')}"></span>
+				                    </span>
+				                </td>
+				                
+				                <td class="text-muted text-truncate" style="max-width: 200px;" th:text="${o.descripcionTrabajo}"></td>
+				                
+				                <td>
+				                    <span th:text="${o.estado}" 
+				                          class="badge rounded-pill px-3 py-2"
+				                          th:style="${o.estado == 'PENDIENTE' ? 'background-color: #ffb848; color: white;' : 'background-color: #28a745; color: white;'}">
+				                    </span>
+				                </td>
+				                
+                <td class="text-center pe-4">
+                    <div class="d-flex justify-content-center gap-1">
+                        <a th:href="@{/orden/ver/{id}(id=${o.idOrden})}" class="btn btn-outline-primary btn-sm border">
+                            <i class="mdi mdi-eye-outline text-primary"></i>
+                        </a>
+                        <a th:href="@{/orden/eliminar/{id}(id=${o.idOrden})}" 
+                           class="btn btn-outline-danger btn-sm border"
+                           onclick="return confirm('¿Desea eliminar esta orden?')">
+                            <i class="mdi mdi-delete-outline text-danger"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
             </div>
-
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Cliente</th>
-                            <th>Fecha</th>
-                            <th>Descripción</th>
-                            <th>Estado</th>
-                            <th class="text-center">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="o : ${ordenes}">
-                            <td th:text="${o.idOrden}"></td>
-                            <td th:text="${o.cliente.nombre}"></td>
-                            <td th:text="${o.fecha}"></td>
-                            <td th:text="${o.descripcion}"></td>
-                            <td>
-                                <span th:if="${o.estado}" class="badge bg-success">Activa</span>
-                                <span th:unless="${o.estado}" class="badge bg-secondary">Cerrada</span>
-                            </td>
-                            <td class="text-center">
-                                <a th:href="@{/orden/editar/{id}(id=${o.idOrden})}" 
-                                   class="btn btn-info btn-sm">Editar</a>
-                                <a th:href="@{/orden/eliminar/{id}(id=${o.idOrden})}" 
-                                   class="btn btn-danger btn-sm"
-                                   onclick="return confirm('¿Eliminar esta orden?')">Eliminar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:if="${mensaje != null}">
+        Swal.fire({
+            title: '[[${tipo == "error" ? "Error" : "Confirmación"}]]',
+            icon: '[[${tipo == "error" ? "error" : "success"}]]',
+            text: '[[${mensaje}]]',
+            timer: 3000,
+            showConfirmButton: false
+        });
+    </script>
 </div>
-  
-  </body>
+</body>
 </html>

@@ -9,6 +9,8 @@ import com.uisrael.comusoapi.modelo.dto.request.EquipoRequestDTO;
 import com.uisrael.comusoapi.modelo.dto.response.EquipoResponseDTO;
 import com.uisrael.comusoapi.service.IEquipoServicio;
 
+import reactor.core.publisher.Mono;
+
 @Service
 public class EquipoServicioImpl implements IEquipoServicio {
 
@@ -50,15 +52,21 @@ public class EquipoServicioImpl implements IEquipoServicio {
  
     @Override
     public List<EquipoResponseDTO> listarEquiposPorCliente(int idCliente) {
+      
+        if (idCliente <= 0) {
+            return java.util.Collections.emptyList();
+        }
+        
+      
         return webClient.get()
                 .uri("/equipo/cliente/{id}", idCliente) 
                 .retrieve()
+                   
+                    .onStatus(status -> status.is4xxClientError(), response -> Mono.empty())
                 .bodyToFlux(EquipoResponseDTO.class)
                 .collectList()
                 .block();
     }
-
-
 
 	@Override
 	public void eliminarEquipo(int id) {

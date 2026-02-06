@@ -10,90 +10,71 @@ public class OrdenTrabajo implements Serializable {
 
 	private final int idOrden;
 	private final String codigo;
-	private final Cliente cliente;
-	private final Tecnico tecnico;
-	private final TipoServicio tipoServicio;
-	private final Equipo equipo;
+	private final int idCliente;
+    private final int idTecnico;
+    private final int idTipoServicio;
+    private final int idEquipo;
 	private final LocalDate fechaSolicitud;
-	private final LocalDate fechaAgendada;
-	private final LocalTime horaAgendada;
+	private final LocalDate fechaCita; 
+    private final LocalTime horaCita;
 	private final String estado;
 	private final String descripcionTrabajo;
 	private final String observaciones;
-
-	public OrdenTrabajo(
-			int idOrden,
-			String codigo,
-			Cliente cliente,
-			Tecnico tecnico,
-			TipoServicio tipoServicio,
-			Equipo equipo,
-			LocalDate fechaSolicitud,
-			LocalDate fechaAgendada,
-			LocalTime horaAgendada,
-			String estado,
-			String descripcionTrabajo,
+	public OrdenTrabajo(int idOrden, String codigo, int idCliente, int idTecnico, int idTipoServicio, int idEquipo,
+			LocalDate fechaSolicitud, LocalDate fechaCita, LocalTime horaCita, String estado, String descripcionTrabajo,
 			String observaciones) {
-
+		super();
 		this.idOrden = idOrden;
 		this.codigo = codigo;
-		this.cliente = cliente;
-		this.tecnico = tecnico;
-		this.tipoServicio = tipoServicio;
-		this.equipo = equipo;
+		this.idCliente = idCliente;
+		this.idTecnico = idTecnico;
+		this.idTipoServicio = idTipoServicio;
+		this.idEquipo = idEquipo;
 		this.fechaSolicitud = fechaSolicitud;
-		this.fechaAgendada = fechaAgendada;
-		this.horaAgendada = horaAgendada;
+		this.fechaCita = fechaCita;
+		this.horaCita = horaCita;
 		this.estado = estado;
 		this.descripcionTrabajo = descripcionTrabajo;
 		this.observaciones = observaciones;
 	}
-
 	public int getIdOrden() {
 		return idOrden;
 	}
-
 	public String getCodigo() {
 		return codigo;
 	}
-
-	public Cliente getCliente() {
-		return cliente;
+	public int getIdCliente() {
+		return idCliente;
 	}
-
-	public Tecnico getTecnico() {
-		return tecnico;
+	public int getIdTecnico() {
+		return idTecnico;
 	}
-
-	public TipoServicio getTipoServicio() {
-		return tipoServicio;
+	public int getIdTipoServicio() {
+		return idTipoServicio;
 	}
-
-	public Equipo getEquipo() {
-		return equipo;
+	public int getIdEquipo() {
+		return idEquipo;
+	}
+	public LocalDate getFechaSolicitud() {
+		return fechaSolicitud;
+	}
+	public LocalDate getFechaCita() {
+		return fechaCita;
+	}
+	public LocalTime getHoraCita() {
+		return horaCita;
 	}
 	public String getEstado() {
 		return estado;
 	}
-
 	public String getDescripcionTrabajo() {
 		return descripcionTrabajo;
 	}
-
 	public String getObservaciones() {
 		return observaciones;
 	}
-
-	public LocalDate getFechaSolicitud() {
-		return fechaSolicitud;
-	}
-
-	public LocalDate getFechaAgendada() {
-		return fechaAgendada;
-	}
-
-	public LocalTime getHoraAgendada() {
-		return horaAgendada;
-	}
-
+	
+	
 }
+
+	

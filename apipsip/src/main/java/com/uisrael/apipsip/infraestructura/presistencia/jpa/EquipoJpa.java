@@ -1,6 +1,9 @@
 package com.uisrael.apipsip.infraestructura.presistencia.jpa;
 
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,6 +23,7 @@ public class EquipoJpa implements Serializable {
 	    private String marca;
 	    private String modelo;
 	    @Column(name = "numserie")
+	    @JsonProperty("numserie")
 	    private String numSerie;
     private String descripcion;
 }

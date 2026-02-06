@@ -18,20 +18,11 @@ public class TecnicoServicioImpl  implements ITecnicoServicio{
         this.webClient = webClient;
     }
 
-    @Override
-    public List<TecnicoResponseDTO> listarTecnicos() {
-        return webClient.get()
-                .uri("/tecnico")
-                .retrieve()
-                .bodyToFlux(TecnicoResponseDTO.class)
-                .collectList()
-                .block();
-    }
-
+ 
     @Override
     public void crearTecnico(TecnicoRequestDTO dto) {
         webClient.post()
-                .uri("/tecnico/nuevo")
+                .uri("/tecnico") 
                 .bodyValue(dto)
                 .retrieve()
                 .toBodilessEntity()
@@ -65,5 +56,13 @@ public class TecnicoServicioImpl  implements ITecnicoServicio{
                 .toBodilessEntity()
                 .block();
     }
-
+    @Override
+    public List<TecnicoResponseDTO> listarTecnico() {
+        return webClient.get()
+                .uri("/tecnico") 
+                .retrieve()
+                .bodyToFlux(TecnicoResponseDTO.class)
+                .collectList()
+                .block();
+    }
 }

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uisrael.comusoapi.modelo.dto.request.EquipoRequestDTO;
+import com.uisrael.comusoapi.modelo.dto.response.ClienteResponseDTO;
 import com.uisrael.comusoapi.modelo.dto.response.EquipoResponseDTO;
+import com.uisrael.comusoapi.service.IClienteServicio;
 import com.uisrael.comusoapi.service.IEquipoServicio;
 
 @Controller
@@ -23,14 +25,20 @@ public class EquipoControlador {
     @Autowired
     private IEquipoServicio servicioEquipo;
 
-    
+    @Autowired
+    private IClienteServicio servicioCliente; 
+
     @GetMapping("/listarPorCliente/{id}")
     public String listarPorCliente(@PathVariable int id, Model model) {
+      
         model.addAttribute("listaequipos", servicioEquipo.listarEquiposPorCliente(id));
+        
+        ClienteResponseDTO cliente = servicioCliente.buscarClientePorId(id);
+        model.addAttribute("nombreCliente", cliente.getNombre()); 
+        
         model.addAttribute("idCliente", id);
         return "equipo/listarequipos"; 
     }
-
 
     @GetMapping("/nuevo")
     public String nuevoEquipo(@RequestParam(name = "idCliente") int idCliente, Model model) {

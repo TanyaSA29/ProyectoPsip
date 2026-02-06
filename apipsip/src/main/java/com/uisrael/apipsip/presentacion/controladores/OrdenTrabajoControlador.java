@@ -13,7 +13,7 @@ import com.uisrael.apipsip.presentacion.dto.request.OrdenTrabajoRequestDTO;
 import com.uisrael.apipsip.presentacion.dto.response.OrdenTrabajoResponseDTO;
 
 @RestController
-@RequestMapping("/api/orden-trabajo")
+@RequestMapping("/api/ordentrabajo")
 public class OrdenTrabajoControlador {
 
     private final IOrdenTrabajoUseCase ordenTrabajoUseCase;
@@ -41,9 +41,9 @@ public class OrdenTrabajoControlador {
         );
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable int id) {
-        ordenTrabajoUseCase.eliminar(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/{id}")
+    public OrdenTrabajoResponseDTO obtenerPorId(@PathVariable int id) {
+    
+        return mapper.toResponseDto(ordenTrabajoUseCase.obtenerPorId(id));
     }
 }

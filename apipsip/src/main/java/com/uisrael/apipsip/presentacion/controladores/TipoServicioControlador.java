@@ -12,7 +12,7 @@ import com.uisrael.apipsip.presentacion.dto.request.TipoServicioRequestDTO;
 import com.uisrael.apipsip.presentacion.dto.response.TipoServicioResponseDTO;
 
 @RestController
-@RequestMapping("/api/tipo-servicio")
+@RequestMapping("/api/tiposervicio")
 public class TipoServicioControlador {
 
     private final ITipoServicioUseCase tipoServicioUseCase;

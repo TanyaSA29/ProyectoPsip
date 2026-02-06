@@ -12,34 +12,56 @@ import lombok.Data;
 public class OrdenTrabajoJpa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idorden")
+    private int idOrden;
 
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "idorden")
-	    private int idOrden;
+    private String codigo;
 
-	    private String codigo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idcliente", insertable = false, updatable = false)
+    private ClienteJpa cliente;
 
-	    @ManyToOne
-	    @JoinColumn(name = "idcliente")
-	    private ClienteJpa cliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idtecnico", insertable = false, updatable = false)
+    private TecnicoJpa tecnico;
 
-	    @ManyToOne
-	    @JoinColumn(name = "idtecnico")
-	    private TecnicoJpa tecnico;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idtipo", insertable = false, updatable = false)
+    private TipoServicioJpa tipoServicio;
 
-	    @ManyToOne
-	    @JoinColumn(name = "idtipo")
-	    private TipoServicioJpa tipoServicio;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idequipo", insertable = false, updatable = false)
+    private EquipoJpa equipo;
 
-	    @ManyToOne
-	    @JoinColumn(name = "idequipo")
-	    private EquipoJpa equipo;
+    @Column(name = "idcliente")
+    private int idCliente;
 
-	    private LocalDate fechaSolicitud;
-	    private LocalDate fechaAgendada;
-	    private LocalTime horaAgendada;
-	    private String estado;
-	    private String descripcionTrabajo;
-	    private String observaciones;
-	}
+    @Column(name = "idtecnico")
+    private int idTecnico;
+
+    @Column(name = "idtipo")
+    private int idTipoServicio;
+
+    @Column(name = "idequipo")
+    private int idEquipo;
+
+    @Column(name = "fechasolicitud") 
+    private LocalDate fechaSolicitud;
+
+    @Column(name = "fechaagendada") 
+    private LocalDate fechaCita;
+
+    @Column(name = "horaagendada")  
+    private LocalTime horaCita;
+
+    private String estado;
+
+    @Column(name = "descripciontrabajo") 
+    private String descripcionTrabajo;
+
+    private String observaciones;
+}
+	

@@ -11,6 +11,7 @@ public class EquipoRequestDTO {
     private int idCliente;
 	private  String marca;
 	private  String modelo;
+	@JsonProperty("numserie")
 	private  String numSerie;
 	private String descripcion;
 

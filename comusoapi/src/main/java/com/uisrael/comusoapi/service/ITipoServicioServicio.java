@@ -9,7 +9,8 @@ import com.uisrael.comusoapi.modelo.dto.response.TipoServicioResponseDTO;
 public interface ITipoServicioServicio {
 
   
-public List<TipoServicioResponseDTO> listarTiposServicio();
+public List<TipoServicioResponseDTO> listarTipoServicio();
 public void crearTipoServicio(TipoServicioRequestDTO dto);
 public TipoServicioResponseDTO buscarTipoServicioPorId(int id);
+
 }

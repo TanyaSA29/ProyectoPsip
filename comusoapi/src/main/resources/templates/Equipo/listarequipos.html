@@ -9,56 +9,57 @@
 <div layout:fragment="contenidopaginas">
     <div class="card">
         <div class="card-body">
-            <div class="d-md-flex align-items-center mb-3">
-                <div>
-                    <h4 class="card-title">Equipos Asignados al Cliente</h4>
-                    
-                </div>
-                <div class="ms-auto">
-                    <a th:href="@{/equipo/nuevo(idCliente=${idCliente})}" class="btn btn-success text-white">
-                        <i class="mdi mdi-plus"></i> Crear Nuevo Equipo
-                    </a>
-                </div>
-            </div>
-						<table class="table">
-						    <thead class="thead-dark">
-						        <tr>
-						            <th scope="col">ID Equipo</th>
-						            <th scope="col">Marca</th>
-						            <th scope="col">Modelo</th>
-						            <th scope="col"></th>
-						        </tr>
-						    </thead>
-						    <tbody>
-						        <tr th:each="e : ${listaequipos}">
-						            <td th:text="${e.idEquipo}"></td>
-						            <td th:text="${e.marca}"></td>
-						            <td th:text="${e.modelo}"></td>
-						            <td>
-						               <a th:href="@{/equipo/editar/{id}(id=${e.idEquipo})}" 
-							                   class="btn btn-sm btn-primary">
-							                   ✎
-							                </a>
-						                
-						                <a th:href="@{/equipo/eliminar/{id}(id=${e.idEquipo})}" 
-						                   class="btn btn-sm btn-danger"
-						                   onclick="return confirm('¿Seguro que deseas eliminar este equipo?');">
-						                   ✘
-						                </a>
-									</td>
-						        </tr>
-						    </tbody>
-						</table>
+            <h4 class="card-title">
+                Equipos de: <span class="text-info" th:text="${nombreCliente}">Nombre</span>
+            </h4>
             
+            <hr>
+
+            <div class="mb-3 text-end">
+                <a th:href="@{/equipo/nuevo(idCliente=${idCliente})}" class="btn btn-cyan text-white">
+                    <i class="mdi mdi-plus"></i> Nuevo Equipo
+                </a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Serie</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="e : ${listaequipos}">
+                            <td th:text="${e.marca}"></td>
+                            <td th:text="${e.modelo}"></td>
+                            <td th:text="${e.numSerie}"></td>
+                            <td th:text="${e.descripcion}"></td>
+                            <td>
+                                <a th:href="@{/equipo/editar/{id}(id=${e.idEquipo})}" class="btn btn-warning btn-sm">
+                                    <i class="mdi mdi-pencil"></i>
+                                </a>
+                                <a th:href="@{/equipo/eliminar/{id}(id=${e.idEquipo})}" 
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('¿Desea eliminar este equipo?')">
+                                    <i class="mdi mdi-delete"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             
             <div class="mt-3">
                 <a th:href="@{/cliente/listar}" class="btn btn-secondary">
-                    <i class="mdi mdi-arrow-left"></i> Volver a Clientes
+                    <i class="mdi mdi-arrow-left"></i> Regresar a Clientes
                 </a>
             </div>
         </div>
     </div>
-
+</div>
 </body>
 </html>

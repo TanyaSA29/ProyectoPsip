@@ -18,15 +18,14 @@ public class TipoServicioServicioImpl implements ITipoServicioServicio{
 	    }
 
 	    @Override
-	    public List<TipoServicioResponseDTO> listarTiposServicio() {
+	    public List<TipoServicioResponseDTO> listarTipoServicio() { 
 	        return webClient.get()
-	                .uri("/tiposervicio")
+	                .uri("/tiposervicio") 
 	                .retrieve()
 	                .bodyToFlux(TipoServicioResponseDTO.class)
 	                .collectList()
 	                .block();
 	    }
-
 	    @Override
 	    public void crearTipoServicio(TipoServicioRequestDTO dto) {
 	        webClient.post()
@@ -45,4 +44,7 @@ public class TipoServicioServicioImpl implements ITipoServicioServicio{
 	                .bodyToMono(TipoServicioResponseDTO.class)
 	                .block();
 	    }
+
+	
+	    
 }
