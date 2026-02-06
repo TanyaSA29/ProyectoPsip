@@ -46,4 +46,9 @@ public class OrdenTrabajoControlador {
     
         return mapper.toResponseDto(ordenTrabajoUseCase.obtenerPorId(id));
     }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable int id) {
+       
+        ordenTrabajoUseCase.eliminar(id);
+    }
 }
